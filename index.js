@@ -1,10 +1,10 @@
 module.exports = {
     book: {
-        assets: "./src",
+        assets: "./book",
         js: [
-            "jquery-1.4.2.min.js",
             "jquery.console.js",
-            "repl.js"
+            "repl.js",
+            "runrepl.js"
         ],
         css: [
             "himera.css"
@@ -21,7 +21,7 @@ module.exports = {
             "head:end": "<!-- head:end -->",
 
             "body:start": "<!-- body:start -->",
-            "body:end": "<script type='text/javascript'></script>"
+            "body:end": ""
         }
     },
     hooks: {
