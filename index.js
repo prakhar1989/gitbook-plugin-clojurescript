@@ -1,11 +1,13 @@
 module.exports = {
     book: {
-        assets: "./book",
+        assets: "./src",
         js: [
-            "test.js"
+            "jquery-1.4.2.min.js",
+            "jquery.console.js",
+            "repl.js"
         ],
         css: [
-            "test.css"
+            "himera.css"
         ],
         html: {
             "html:start": function() {
@@ -19,7 +21,7 @@ module.exports = {
             "head:end": "<!-- head:end -->",
 
             "body:start": "<!-- body:start -->",
-            "body:end": "<!-- body:end -->"
+            "body:end": "<script type='text/javascript'></script>"
         }
     },
     hooks: {
