@@ -21,6 +21,7 @@
   margin: 10px 10px;
   overflow:auto; 
   text-align:left;
+  position: relative;
 }
 #console div.jquery-console-message-value {
   color:#bf616a; 
