@@ -295,7 +295,8 @@
                      config.charInsertTrigger(keyCode,promptText)))
                     typer.consoleInsert(keyCode);
             }
-            if ($.browser.webkit) return false;
+            //if ($.browser.webkit) return false;
+            return false;
         });
 
         function isIgnorableKey(e) {
