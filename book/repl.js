@@ -1,17 +1,5 @@
-/*
- *  Adapted from : http://himera.herokuapp.com 
- *  Copyright (c) 2012, 2013 Fogus and Relevance Inc. All rights reserved.  The
- *  use and distribution terms for this software are covered by the Eclipse
- *  Public License 1.0 (http://opensource.org/licenses/eclipse-1.0.php)
- *  which can be found in the file COPYING the root of this
- *  distribution.  By using this software in any fashion, you are
- *  agreeing to be bound by the terms of this license.  You must not
- *  remove this notice, or any other, from this software.
-*/
-
-
-
 var COMPILED = !0, goog = goog || {};
+goog.cljServerURL = "http://clojurebyexample-repl.herokuapp.com/compile";
 goog.global = this;
 goog.DEBUG = !0;
 goog.LOCALE = "en";
@@ -19144,9 +19132,16 @@ himera.client.repl.map__GT_js = function(a) {
 };
 himera.client.repl.go_compile = function(a) {
   var b = cljs.core.atom.call(null, null);
-  a = himera.client.repl.map__GT_js.call(null, cljs.core.PersistentArrayMap.fromArray(["\ufdd0:url", "/compile", "\ufdd0:data", [cljs.core.str("{:expr "), cljs.core.str(a), cljs.core.str("}")].join(""), "\ufdd0:contentType", "application/clojure; charset\x3dutf-8", "\ufdd0:async", !1, "\ufdd0:type", "POST", "\ufdd0:dataType", "text", "\ufdd0:success", function(a) {
-    return function(b) {
-      return cljs.core.reset_BANG_.call(null, a, cljs.reader.read_string.call(null, b))
+  a = himera.client.repl.map__GT_js.call(null, 
+      //cljs.core.PersistentArrayMap.fromArray(["\ufdd0:url", "/compile", 
+      cljs.core.PersistentArrayMap.fromArray(["\ufdd0:url", goog.cljServerURL,
+        "\ufdd0:data", [cljs.core.str("{:expr "), cljs.core.str(a), cljs.core.str("}")].join(""), 
+        "\ufdd0:contentType", "application/clojure; charset\x3dutf-8", 
+        "\ufdd0:async", !1, "\ufdd0:type", "POST", 
+        "\ufdd0:dataType", "text", "\ufdd0:success", 
+        function(a) {
+            return function(b) {
+              return cljs.core.reset_BANG_.call(null, a, cljs.reader.read_string.call(null, b))
     }
   }(b)], !0));
   jQuery.ajax(a);
