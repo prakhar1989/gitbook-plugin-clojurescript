@@ -19179,7 +19179,7 @@ himera.client.repl.on_handle = function(a, b) {
 himera.client.repl.go = function() {
   return jQuery(document).ready(function() {
     var a = jQuery("#console");
-    a.console(himera.client.repl.map__GT_js.call(null, cljs.core.PersistentArrayMap.fromArray(["\ufdd0:welcomeMessage", "Himera REPL v0.2.6", "\ufdd0:promptLabel", "cljs.user\x3e ", "\ufdd0:commandValidate", himera.client.repl.on_validate, "\ufdd0:commandHandle", himera.client.repl.on_handle, "\ufdd0:autofocus", !0, "\ufdd0:animateScroll", !0, "\ufdd0:promptHistory", !0], !0)));
+    a.console(himera.client.repl.map__GT_js.call(null, cljs.core.PersistentArrayMap.fromArray(["\ufdd0:welcomeMessage", "Himera REPL v0.2.6", "\ufdd0:promptLabel", "cljs.user\x3e ", "\ufdd0:commandValidate", himera.client.repl.on_validate, "\ufdd0:commandHandle", himera.client.repl.on_handle, "\ufdd0:autofocus", !1, "\ufdd0:animateScroll", !1, "\ufdd0:promptHistory", !0], !0)));
     return controller = a
   })
 };
