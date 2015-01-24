@@ -3,11 +3,10 @@ module.exports = {
         assets: "./book",
         js: [
             "jqconsole.min.js",
-            //"repl-jqconsole.js"
             "runrepl.js"
         ],
         css: [
-            "jqconsole.css"
+            "jqconsole.min.css"
         ],
         html: {
             "html:start": function() {
