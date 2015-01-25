@@ -17,7 +17,9 @@ module.exports = {
             },
 
             "head:start": "<!-- head:start -->",
-            "head:end": "<!-- head:end -->",
+            "head:end": function() {
+              return "<!-- head:end -->"
+            },
 
             "body:start": "<!-- body:start -->",
             "body:end": ""

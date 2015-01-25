@@ -1,12 +1,24 @@
 require(["gitbook"], function(gitbook) {
+
   // Global namespace for this plugin
   var Repl = Repl || {};
 
+  // default config settings
+  var config = { 
+    repl: {
+      URL: "http://clojurebyexample-repl.herokuapp.com/eval.json"
+    }
+  }
+
+  // Set config on book start. Note,  this runs *after* page.change
+  gitbook.events.bind("start", function(e, configuration) {
+    config.repl = configuration.repl;
+  });
+
   Repl.runCode = function(code) {
     var data;
-    var url = this.config.URL;
     $.ajax({
-      url: url,
+      url: this.config.URL,
       data: { expr: code },
       async: false,
       success: function(res) { data = res; }
@@ -68,17 +80,18 @@ require(["gitbook"], function(gitbook) {
 
   Repl.init = function(domElem, header, prompt) {
     Repl.console = $(domElem).jqconsole(header, prompt);
-    Repl.config = {
-      URL: "http://clojurebyexample-repl.herokuapp.com/eval.json"
-    };
+    Repl.config = config.repl;
     Repl.registerShortcuts();
     Repl.handler();
   };
 
-  gitbook.events.bind("page.change", function() {
+  gitbook.events.bind("page.change", function(a) {
     var header = 'Clojure REPL!\n',
         prompt = "user=> ",
         domElem = "#console";
-    Repl.init(domElem, header, prompt);
+
+    if ($(domElem).length > 0) {
+      Repl.init(domElem, header, prompt);
+    }
   });
 });
