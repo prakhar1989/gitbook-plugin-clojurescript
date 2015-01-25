@@ -2,7 +2,7 @@
   "name": "gitbook-plugin-repl",
   "description": "A Gitbook plugin for running a REPL inside Gitbook",
   "main": "index.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "gitbook": "*"
   },
