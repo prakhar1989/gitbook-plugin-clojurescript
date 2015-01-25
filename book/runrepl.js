@@ -1,74 +1,84 @@
 require(["gitbook"], function(gitbook) {
-  var init = function() {
-    var header = 'Clojure REPL!\n';
-    window.jqconsole = $('#console').jqconsole(header, 'user=> ');
+  // Global namespace for this plugin
+  var Repl = Repl || {};
 
-    // Abort prompt on Ctrl+Z.
-    jqconsole.RegisterShortcut('Z', function() {
-      jqconsole.AbortPrompt();
+  Repl.runCode = function(code) {
+    var data;
+    var url = this.config.URL;
+    $.ajax({
+      url: url,
+      data: { expr: code },
+      async: false,
+      success: function(res) { data = res; }
+    });
+    return data;
+  };
+
+  Repl.handler = function(command) {
+    var console = Repl.console;
+
+    if (command) {
+      var resp = Repl.runCode(command);
+      if (resp.error) {
+        console.Write('ERROR: ' + resp.message + '\n', 'jqconsole-error');
+      } else {
+        console.Write(resp.result + '\n');
+      }
+    }
+
+    // Continue line if can't compile the command.
+    console.Prompt(true, Repl.handler, function(command) {
+      return false;
+    });
+  }
+
+  Repl.registerShortcuts = function() {
+    var console = Repl.console;
+
+    console.RegisterShortcut('Z', function() {
+      console.AbortPrompt();
       handler();
     });
 
-    jqconsole.RegisterShortcut('A', function() {
-      jqconsole.MoveToStart();
+    console.RegisterShortcut('A', function() {
+      console.MoveToStart();
       handler();
     });
 
-    jqconsole.RegisterShortcut('E', function() {
-      jqconsole.MoveToEnd();
+    console.RegisterShortcut('E', function() {
+      console.MoveToEnd();
       handler();
     });
 
-    jqconsole.RegisterShortcut('l', function() {
-      jqconsole.Clear();
+    console.RegisterShortcut('l', function() {
+      console.Clear();
       handler();
     });
 
-    jqconsole.RegisterShortcut('U', function() {
-      jqconsole.ClearPromptText();
+    console.RegisterShortcut('U', function() {
+      console.ClearPromptText();
       handler();
     });
 
     // Register paren matching
-    jqconsole.RegisterMatching('{', '}', 'brace');
-    jqconsole.RegisterMatching('(', ')', 'paran');
-    jqconsole.RegisterMatching('[', ']', 'bracket');
+    console.RegisterMatching('{', '}', 'brace');
+    console.RegisterMatching('(', ')', 'paran');
+    console.RegisterMatching('[', ']', 'bracket');
+  };
 
-    function runClojure(code) {
-      var data;
-      var url = "http://clojurebyexample-repl.herokuapp.com/eval.json";
-      $.ajax({
-        url: url,
-        data: { expr: code },
-        async: false,
-        success: function(res) { data = res; }
-      });
-      return data;
+  Repl.init = function(domElem, header, prompt) {
+    Repl.console = $(domElem).jqconsole(header, prompt);
+    Repl.config = {
+      URL: "http://clojurebyexample-repl.herokuapp.com/eval.json"
     };
-
-    // Handle a command.
-    var handler = function(command) {
-      if (command) {
-        var resp = runClojure(command);
-        if (resp.error) {
-          jqconsole.Write('ERROR: ' + resp.message + '\n', 'jqconsole-error');
-        } else {
-          jqconsole.Write(resp.result + '\n');
-        }
-      }
-
-      jqconsole.Prompt(true, handler, function(command) {
-        // Continue line if can't compile the command.
-        return false;
-      });
-
-    };
-
-    // Initiate the first prompt.
-    handler();
+    Repl.registerShortcuts();
+    Repl.handler();
   };
 
   gitbook.events.bind("page.change", function() {
-    init();
+    var header = 'Clojure REPL!\n',
+        prompt = "user=> ",
+        domElem = "#console";
+    Repl.init(domElem, header, prompt);
   });
 });
