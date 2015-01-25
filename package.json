@@ -1,19 +1,19 @@
 {
-  "name": "gitbook-plugin-clojurescript",
-  "description": "A Gitbook plugin for running a clojurescript REPA Gitbook plugin for running a clojurescript REPL",
+  "name": "gitbook-plugin-repl",
+  "description": "A Gitbook plugin for running a REPL inside Gitbook",
   "main": "index.js",
-  "version": "0.0.9",
+  "version": "0.0.1",
   "engines": {
     "gitbook": "*"
   },
-  "homepage": "https://github.com/prakhar1989/gitbook-plugin-clojurescript",
+  "homepage": "https://github.com/prakhar1989/gitbook-plugin-repl",
   "repository": {
     "type": "git",
-    "url": "https://github.com/prakhar1989/gitbook-plugin-clojurescript.git"
+    "url": "https://github.com/prakhar1989/gitbook-plugin-repl.git"
   },
   "license": "Apache 2",
   "bugs": {
-    "url": "https://github.com/prakhar1989/gitbook-plugin-clojurescript/issues"
+    "url": "https://github.com/prakhar1989/gitbook-plugin-repl/issues"
   },
   "dependencies": {
     "gulp": "^3.8.10",

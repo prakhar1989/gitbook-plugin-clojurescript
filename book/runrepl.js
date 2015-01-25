@@ -9,13 +9,11 @@ require(["gitbook"], function(gitbook) {
       handler();
     });
 
-    // Move to line start Ctrl+A.
     jqconsole.RegisterShortcut('A', function() {
       jqconsole.MoveToStart();
       handler();
     });
 
-    // Move to line end Ctrl+E.
     jqconsole.RegisterShortcut('E', function() {
       jqconsole.MoveToEnd();
       handler();
@@ -23,6 +21,11 @@ require(["gitbook"], function(gitbook) {
 
     jqconsole.RegisterShortcut('l', function() {
       jqconsole.Clear();
+      handler();
+    });
+
+    jqconsole.RegisterShortcut('U', function() {
+      jqconsole.ClearPromptText();
       handler();
     });
 

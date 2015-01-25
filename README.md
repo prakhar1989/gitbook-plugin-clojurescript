@@ -1,7 +1,7 @@
-Clojure REPL - GitBook Plugin
+GitBook Plugin - REPL
 ==============
 
-This is a Gitbook Plugin that allows you to embed a Clojure REPL right in your Gitbook!
+This is a Gitbook Plugin that allows you to embed a REPL right in your Gitbook!
 
 ![img](shot.png)
 
