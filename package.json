@@ -1,8 +1,8 @@
 {
-  "name": "gitbook-plugin-repl",
-  "description": "A Gitbook plugin for running a REPL inside Gitbook",
+  "name": "gitbook-plugin-clojurescript",
+  "description": "A Gitbook plugin for running a ClojureScript REPL inside Gitbook",
   "main": "index.js",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "engines": {
     "gitbook": "*"
   },
