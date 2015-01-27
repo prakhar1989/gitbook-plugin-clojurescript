@@ -2,11 +2,12 @@ module.exports = {
     book: {
         assets: "./book",
         js: [
-            "jqconsole.min.js",
+            "jquery.console.js",
+            "repl.js",
             "runrepl.js"
         ],
         css: [
-            "jqconsole.min.css"
+            "himera.css"
         ],
         html: {
             "html:start": function() {

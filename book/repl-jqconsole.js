@@ -1,6 +1,6 @@
 $(function() {
   // Creating the console.
-  var header = 'Clojure REPL!\n';
+  var header = 'Gimme some Clojure baby!\n';
   window.jqconsole = $('#console').jqconsole(header, 'user=> ');
 
   // Abort prompt on Ctrl+Z.
@@ -22,7 +22,7 @@ $(function() {
   });
 
   jqconsole.RegisterShortcut('l', function() {
-    jqconsole.Clear();
+    jqconsole.Reset();
     handler();
   });
 
@@ -30,6 +30,14 @@ $(function() {
   jqconsole.RegisterMatching('{', '}', 'brace');
   jqconsole.RegisterMatching('(', ')', 'paran');
   jqconsole.RegisterMatching('[', ']', 'bracket');
+
+  function html_escape(val) {
+    var result = val;
+    result = result.replace(/\n/g, "<br/>");
+    result = result.replace(/[<]/g, "&lt;");
+    result = result.replace(/[>]/g, "&gt;");
+    return result;
+  }
 
   function runClojure(code) {
     var data;
@@ -47,10 +55,10 @@ $(function() {
   var handler = function(command) {
     if (command) {
       var resp = runClojure(command);
-      if (resp.error) {
-        jqconsole.Write('ERROR: ' + resp.message + '\n', 'jqconsole-error');
-      } else {
+      if (resp.error !== "undefined") {
         jqconsole.Write(resp.result + '\n');
+      } else {
+        jqconsole.Write('ERROR: ' + resp.message + '\n');
       }
     }
 

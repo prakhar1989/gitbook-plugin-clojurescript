@@ -1,4 +1,5 @@
 require(["gitbook"], function(gitbook) {
+<<<<<<< HEAD
 
   // Global namespace for this plugin
   var Repl = Repl || {};
@@ -24,6 +25,13 @@ require(["gitbook"], function(gitbook) {
       success: function(res) { data = res; }
     });
     return data;
+=======
+  var init = function() {
+    goog.require('himera.client.repl');
+    himera.client.repl.go();
+    goog.require('cljs.core');
+    goog.provide('cljs.user');
+>>>>>>> parent of 5384d9a... Moving to jqconsole along with tryclojure
   };
 
   Repl.handler = function(command) {
