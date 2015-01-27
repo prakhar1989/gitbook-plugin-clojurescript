@@ -5,8 +5,8 @@ var gulp      = require('gulp'),
 
 
 gulp.task('default', function() {
-  gulp.src('book/jqconsole.css')
+  gulp.src('book/himera.css')
       .pipe(minifyCSS())
-      .pipe(rename('jqconsole.min.css'))
+      .pipe(rename('himera.min.css'))
       .pipe(gulp.dest('book'))
 });
